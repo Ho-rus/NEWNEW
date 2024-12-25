@@ -6,7 +6,7 @@ services:
       - "8001:80"
 
   rest:
-    build: ./API WCF
+    build: ./MyApiProject
     ports:
       - "8002:80"
 
