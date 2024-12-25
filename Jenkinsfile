@@ -3,22 +3,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'dotnet build "F:/Code/Assign 2/WcfServiceLibrary1/WcfServiceLibrary1.sln"'
+                bat 'dotnet build ./MyApiProject/MyApiProject.sln'
+                bat 'dotnet build ./GRPC/GRPC.sln'
             }
         }
         stage('Test') {
             steps {
-                bat 'dotnet test'
+                // Specify each solution or test project file explicitly
+                bat 'dotnet test ./MyApiProject/MyApiProject.sln'
+                bat 'dotnet test ./GRPC/GRPC.sln'
             }
         }
         stage('Docker Build') {
             steps {
-                sh 'docker-compose build'
+                bat 'docker-compose build'
             }
         }
         stage('Deploy') {
             steps {
-                sh 'docker-compose up -d'
+                bat 'docker-compose up -d'
             }
         }
     }
